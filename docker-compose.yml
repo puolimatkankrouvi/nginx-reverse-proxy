@@ -6,3 +6,9 @@ services:
     ports:
       - 80:80
       - 443:443
+  app:
+    container_name: "app"
+    hostname: "localhost"
+    build: ./app
+    ports:
+      - 3000:3000
