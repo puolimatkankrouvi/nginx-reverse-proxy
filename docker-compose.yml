@@ -1,7 +1,7 @@
 services:
   reverse-proxy:
     container_name: "reverse-proxy"
-    hostname: "reverse-proxy"
+    hostname: "localhost"
     build: .
     ports:
       - 80:80
