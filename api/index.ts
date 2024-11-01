@@ -1,4 +1,4 @@
-import express, { Request, Response } from "express";
+import express, { Request } from "express";
 
 const app = express();
 
@@ -7,7 +7,7 @@ interface IUser {
 }
 
 type RequestWithoutParams = Request<Record<string, never>, IUser>;
-app.get("/", (_request: RequestWithoutParams, response) => {
+app.get("api/user", (_request: RequestWithoutParams, response) => {
     const user = { username: "user" };
     response.status(200).send(user);
 });

@@ -5,10 +5,11 @@ services:
     build: .
     ports:
       - 80:80
-      - 443:443
+    volumes:
+      - ./docker/nginx/log:/var/log/nginx/
   app:
-    container_name: "app"
+    container_name: "api"
     hostname: "localhost"
-    build: ./app
-    ports:
-      - 3000:3000
+    build: ./api
+    expose:
+      - "3000"
