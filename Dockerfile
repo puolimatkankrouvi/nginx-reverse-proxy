@@ -7,6 +7,7 @@ RUN apt-get clean
 
 COPY ./docker/nginx/nginx.conf  etc/nginx/nginx.conf
 COPY ./docker/nginx/sites-available/reverse-proxy.conf etc/nginx/sites-available/reverse-proxy
+COPY ./docker/nginx/var/www/html/ var/www/html/
 
 # Unlink default configuration from enabled sites
 RUN unlink /etc/nginx/sites-enabled/default
