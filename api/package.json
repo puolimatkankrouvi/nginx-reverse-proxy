@@ -1,0 +1,17 @@
+{
+  "name": "proxy-test-api",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "@types/express": "5.0.0",
+    "typescript": "5.6.3"
+  },
+  "dependencies": {
+    "express": "5.0.1"
+  },
+  "scripts": {
+    "start": "npx tsc && node ./dist/index.js"
+  }
+}
