@@ -12,6 +12,7 @@
     "express": "5.0.1"
   },
   "scripts": {
+    "build": "npx tsc",
     "start": "npx tsc && node ./dist/index.js"
   }
 }
