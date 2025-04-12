@@ -7,7 +7,7 @@ interface IUser {
 }
 
 type RequestWithoutParams = Request<Record<string, never>, IUser>;
-app.get("api/user", (_request: RequestWithoutParams, response) => {
+app.get("/user", (_request: RequestWithoutParams, response) => {
     const user = { username: "user" };
     response.status(200).send(user);
 });
