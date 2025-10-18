@@ -1,4 +1,4 @@
-FROM ubuntu:24.10
+FROM debian:12.12-slim
 
 RUN apt update
 RUN apt upgrade -y
