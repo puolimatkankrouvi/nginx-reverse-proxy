@@ -1,4 +1,4 @@
-FROM node:24.11.0-slim AS base
+FROM node:24.11.1-slim AS base
 
 # Install dependencies only when needed
 FROM base AS deps
@@ -30,5 +30,5 @@ EXPOSE 3000
 
 ENV PORT=3000
 
-# server.js is created by next build from the standalone output
+# index.js is created by next build from the standalone output
 CMD ["node", "dist/index.js"]
