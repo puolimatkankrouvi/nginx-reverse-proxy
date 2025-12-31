@@ -5,12 +5,12 @@
   "license": "MIT",
   "private": true,
   "devDependencies": {
-    "@types/express": "5.0.5",
+    "@types/express": "5.0.6",
     "@types/node": "24.10.4",
     "typescript": "5.9.3"
   },
   "dependencies": {
-    "express": "5.1.0"
+    "express": "5.2.1"
   },
   "scripts": {
     "build": "npx tsc",
