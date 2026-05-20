@@ -1,4 +1,4 @@
-FROM debian:13.4-slim
+FROM debian:13.5-slim
 
 RUN apt update
 RUN apt upgrade -y
