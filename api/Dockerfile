@@ -1,34 +1,35 @@
 FROM node:24.11.1-slim AS base
+WORKDIR /app
 
-# Install dependencies only when needed
 FROM base AS deps
-WORKDIR /app
 
-COPY package.json yarn.lock*
-RUN yarn --frozen-lockfile
+# Copy only the files Yarn needs
+COPY package.json yarn.lock .yarnrc.yml ./
+COPY .yarn ./.yarn
 
+RUN yarn install --immutable
 
-# Rebuild the source code only when needed
 FROM base AS builder
-WORKDIR /app
-COPY --from=deps /app/node_modules ./node_modules
+
+COPY --from=deps /app /app
 COPY . .
 
-RUN yarn run build
+RUN yarn build
 
-# Production image, copy all the files and run next
 FROM base AS runner
 WORKDIR /app
 
 ENV NODE_ENV=production
+ENV PORT=3000
 
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/package.json ./package.json
-RUN yarn --frozen-lockfile --production
+COPY --from=deps /app/.yarn ./.yarn
+COPY --from=deps /app/.yarnrc.yml ./.yarnrc.yml
+COPY --from=deps /app/yarn.lock ./yarn.lock
+
+RUN yarn workspaces focus --all --production
 
 EXPOSE 3000
 
-ENV PORT=3000
-
-# index.js is created by next build from the standalone output
 CMD ["node", "dist/index.js"]
